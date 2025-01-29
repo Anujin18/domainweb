@@ -1,0 +1,83 @@
+GET http://localhost:3000/orders
+
+###
+GET http://localhost:3000/orders/67933d74e5499b3f7ab1ff35
+
+###
+GET http://localhost:3000/api/orders/domain/jinwa.mn
+
+###
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+    "name": "jina.mn"
+}
+
+###
+POST http://localhost:3000/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImlraGJheWFyMjlAZ21haWwuY29tIiwiaWF0IjoxNzM4MDM0OTU2fQ._ku1n6mxyCUVJjzV-nhpqf-I3roe1fvEjlalo3KzztA
+Content-Type: application/json
+
+{
+    "name": "jina",
+    "createdAt": "2022-11-01",
+    "customer": "Ikhbayar",
+    "email": "ikhbayar29@gmail.com"
+}
+
+###
+DELETE http://localhost:3000/orders/67933d74e5499b3f7ab1ff35
+
+###
+PATCH http://localhost:3000/orders/67934111c9847e4b0c648962
+Content-Type: application/json
+
+{
+    "name": "jina"
+}
+
+###
+GET http://localhost:3000/users
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstName": "Ikhbayar",
+    "lastName": "Khurelbaatar",
+    "email": "ikhbayar29@gmail.com",
+    "phone": 95008877,
+    "password": "Ikheeka12"
+}
+
+###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "firstName": "Ikhbayar",
+    "lastName": "Khurelbaatar",
+    "email": "ikhbayar29@gmail.com",
+    "phone": 95008877,
+    "password": "Ikheeka12"
+}
+
+###
+GET http://localhost:3000/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImlraGJheWFyMjlAZ21haWwuY29tIiwiaWF0IjoxNzM4MDM0OTU2fQ._ku1n6mxyCUVJjzV-nhpqf-I3roe1fvEjlalo3KzztA
+
+###
+GET http://localhost:3000/users/6796f6f56cd308c95392d88a
+
+###
+PATCH http://localhost:3000/users/6796f6f56cd308c95392d88a
+Content-Type: application/json
+
+{
+    "firstName": "Ikhee"
+}
+
+###
+DELETE http://localhost:3000/users/6796f6f56cd308c95392d88a

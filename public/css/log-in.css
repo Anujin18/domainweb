@@ -1,0 +1,379 @@
+* {
+    font-family: 'Roboto';
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    background-color: #121212; /* Dark background */
+    color: #E0E0E0; /* Light text */
+  }
+
+  #responsive {
+    display: none;
+  }
+
+  #dropdown {
+    display: none;
+  }
+
+  @media only screen and (max-width: 480px) {
+    main img {
+      width: 80%;
+    }
+
+    main form {
+      border-radius: 1.5625rem;
+      background: linear-gradient(145deg, #6A1B9A, #8E24AA); /* Neon purple gradient */
+      box-shadow: 0px 1px 10px 2px rgba(98, 0, 234, 0.5);
+      height: 28rem;
+      width: 80%;
+      color: #FFF;
+      text-align: center;
+      top: 9.5rem;
+    }
+
+    main form h1 {
+      font-size: 35px;
+      margin-bottom: 2.5rem;
+    }
+
+    main form article {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    main form article div {
+      display: flex;
+      width: 65%;
+      height: 2.5rem;
+      border-radius: 0.6rem;
+      background: #1E1E1E; /* Dark inner background */
+      margin-top: 1rem;
+      border: none;
+    }
+
+    main form article p {
+      margin-top: 3rem;
+    }
+
+    main {
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 3rem;
+      margin-bottom: 5%;
+    }
+
+    form section {
+      margin-top: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #input input {
+      width: 70%;
+      border-radius: 1.25rem;
+      background: #1E1E1E;
+      color: #BB86FC; /* Neon purple text */
+      font-size: 0.8rem;
+      border: none;
+      outline: none;
+    }
+
+    #submit input {
+      width: 9rem;
+      height: 2rem;
+      margin-top: 1.5rem;
+      background-color: #BB86FC;
+      color: #121212;
+      border-radius: 1.25rem;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .new {
+      margin-top: 2rem;
+    }
+
+    form ::placeholder {
+      color: #BB86FC;
+    }
+  }
+
+  @media only screen and (min-width: 481px) and (max-width: 767px) {
+    main img {
+      width: 80%;
+    }
+
+    main form {
+      border-radius: 1.5625rem;
+      background: linear-gradient(145deg, #6A1B9A, #8E24AA);
+      box-shadow: 0px 1px 10px 2px rgba(98, 0, 234, 0.5);
+      height: 36rem;
+      width: 80%;
+      color: #FFF;
+      text-align: center;
+      top: 9.5rem;
+    }
+
+    main form h1 {
+      font-size: 35px;
+      margin-bottom: 2.5rem;
+    }
+
+    main form article {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    main form article div {
+      display: flex;
+      width: 65%;
+      height: 2.5rem;
+      border-radius: 0.8rem;
+      background: #1E1E1E;
+      margin-top: 1rem;
+      border: none;
+    }
+
+    main form article p {
+      margin-top: 3rem;
+    }
+
+    main {
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 3rem;
+      margin-bottom: 5%;
+    }
+
+    form section {
+      margin-top: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #input input {
+      width: 70%;
+      border-radius: 1.25rem;
+      background: #1E1E1E;
+      color: #BB86FC;
+      font-size: 1rem;
+      border: none;
+      outline: none;
+    }
+
+    #submit input {
+      width: 11.91563rem;
+      height: 2.5rem;
+      margin-top: 2.75rem;
+      background-color: #BB86FC;
+      color: #121212;
+      border-radius: 1.25rem;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .new {
+      margin-top: 3rem;
+    }
+
+    form ::placeholder {
+      color: #BB86FC;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    main img {
+      width: 37%;
+    }
+
+    main form {
+      margin-left: 8%;
+      border-radius: 1.5625rem;
+      background: linear-gradient(145deg, #6A1B9A, #8E24AA);
+      box-shadow: 0px 4px 20px 10px rgba(98, 0, 234, 0.5);
+      height: 36rem;
+      width: 45%;
+      color: #FFF;
+      text-align: center;
+      top: 9.5rem;
+    }
+
+    main form h1 {
+      font-size: 35px;
+      margin-bottom: 2.5rem;
+    }
+
+    main form article {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    main form article div {
+      display: flex;
+      width: 65%;
+      height: 2.5rem;
+      border-radius: 0.8rem;
+      background: #1E1E1E;
+      margin-top: 1rem;
+      border: none;
+    }
+
+    main form article p {
+      margin-top: 3rem;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 5.5rem;
+      margin-bottom: 5%;
+    }
+
+    form section {
+      margin-top: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #input input {
+      width: 70%;
+      border-radius: 1.25rem;
+      background: #1E1E1E;
+      color: #BB86FC;
+      font-size: 1rem;
+      border: none;
+      outline: none;
+    }
+
+    #submit input {
+      width: 11.91563rem;
+      height: 2.5rem;
+      margin-top: 2.75rem;
+      background-color: #BB86FC;
+      color: #121212;
+      border-radius: 1.25rem;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .new {
+      margin-top: 3rem;
+    }
+
+    form ::placeholder {
+      color: #BB86FC;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    main img {
+      width: 37%;
+    }
+
+    main form {
+      margin-left: 8%;
+      border-radius: 1.5625rem;
+      background: linear-gradient(145deg, #6A1B9A, #8E24AA);
+      box-shadow: 0px 4px 20px 10px rgba(98, 0, 234, 0.5);
+      height: 40rem;
+      width: 45%;
+      color: #FFF;
+      text-align: center;
+      top: 9.5rem;
+    }
+
+    main form h1 {
+      font-size: 35px;
+      margin-bottom: 2.5rem;
+    }
+
+    main form article {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    main form article div {
+      display: flex;
+      width: 65%;
+      height: 3.75rem;
+      border-radius: 1.25rem;
+      background: #1E1E1E;
+      margin-top: 1rem;
+      border: none;
+    }
+
+    main form article p {
+      margin-top: 3rem;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      margin-bottom: 5%;
+    }
+
+    form section {
+      margin-top: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #input input {
+      width: 70%;
+      border-radius: 1.25rem;
+      background: #1E1E1E;
+      color: #BB86FC;
+      font-size: 1rem;
+      border: none;
+      outline: none;
+    }
+
+    #submit input {
+      width: 11.91563rem;
+      height: 2.5rem;
+      margin-top: 2.75rem;
+      background-color: #BB86FC;
+      color: #121212;
+      border-radius: 1.25rem;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .new {
+      margin-top: 3rem;
+    }
+
+    form ::placeholder {
+      color: #BB86FC;
+    }
+  }
