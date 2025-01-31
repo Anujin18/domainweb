@@ -1,126 +1,126 @@
 export const websiteData = [
   {
-    "url": "https://zarig.mn",
+    "url": "zarig.mn",
     "isTaken": true,
     "category": "News and Media"
   },
   {
-    "url": "https://news.mn",
+    "url": "news.mn",
     "isTaken": true,
     "category": "News and Media"
   },
   {
-    "url": "https://ikon.mn",
+    "url": "ikon.mn",
     "isTaken": true,
     "category": "News and Media"
   },
   {
-    "url": "https://gogo.mn",
+    "url": "gogo.mn",
     "isTaken": true,
     "category": "News and Media"
   },
   {
-    "url": "https://unuudur.mn",
+    "url": "unuudur.mn",
     "isTaken": true,
     "category": "News and Media"
   },
   {
-    "url": "https://shoppy.mn",
+    "url": "shoppy.mn",
     "isTaken": true,
     "category": "E-commerce"
   },
   {
-    "url": "https://mmarket.mn",
+    "url": "mmarket.mn",
     "isTaken": true,
     "category": "E-commerce"
   },
   {
-    "url": "https://unegui.mn",
+    "url": "unegui.mn",
     "isTaken": true,
     "category": "E-commerce"
   },
   {
-    "url": "https://biznetwork.mn",
+    "url": "biznetwork.mn",
     "isTaken": true,
     "category": "E-commerce"
   },
   {
-    "url": "https://e-mongolia.mn",
+    "url": "e-mongolia.mn",
     "isTaken": true,
     "category": "Government and Public Services"
   },
   {
-    "url": "https://legalinfo.mn",
+    "url": "legalinfo.mn",
     "isTaken": true,
     "category": "Government and Public Services"
   },
   {
-    "url": "https://parliament.mn",
+    "url": "parliament.mn",
     "isTaken": true,
     "category": "Government and Public Services"
   },
   {
-    "url": "https://edu.mn",
+    "url": "edu.mn",
     "isTaken": true,
     "category": "Education"
   },
   {
-    "url": "https://muis.edu.mn",
+    "url": "muis.edu.mn",
     "isTaken": true,
     "category": "Education"
   },
   {
-    "url": "https://shu.edu.mn",
+    "url": "shu.edu.mn",
     "isTaken": true,
     "category": "Education"
   },
   {
-    "url": "https://ub.life",
+    "url": "ub.life",
     "isTaken": true,
     "category": "Entertainment and Lifestyle"
   },
   {
-    "url": "https://yolo.mn",
+    "url": "yolo.mn",
     "isTaken": true,
     "category": "Entertainment and Lifestyle"
   },
   {
-    "url": "https://artger.mn",
+    "url": "artger.mn",
     "isTaken": true,
     "category": "Entertainment and Lifestyle"
   },
   {
-    "url": "https://mongolia.travel",
+    "url": "mongolia.travel",
     "isTaken": true,
     "category": "Travel and Tourism"
   },
   {
-    "url": "https://gurvanbulag.mn",
+    "url": "gurvanbulag.mn",
     "isTaken": true,
     "category": "Travel and Tourism"
   },
   {
-    "url": "https://asuult.net",
+    "url": "asuult.net",
     "isTaken": true,
     "category": "Social Media and Forums"
   },
   {
-    "url": "https://dorgio.mn",
+    "url": "dorgio.mn",
     "isTaken": true,
     "category": "Social Media and Forums"
   },
   {
-    "url": "https://mse.mn",
+    "url": "mse.mn",
     "isTaken": true,
     "category": "Finance and Business"
   },
   {
-    "url": "https://www.golomtbank.com",
+    "url": "golomtbank.com",
     "isTaken": true,
     "category": "Finance and Business"
   },
   {
-    "url": "https://xacbank.mn",
+    "url": "xacbank.mn",
     "isTaken": true,
     "category": "Finance and Business"
   }

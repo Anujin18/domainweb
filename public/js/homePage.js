@@ -1,7 +1,4 @@
-import { websiteData } from '/public/js/data.js'; // Import website data
-
-// Create a Map to store the searched domains
-const searchedDomains = new Map();
+import { websiteData } from '/public/js/example_domains.js'; // Import website data
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.querySelector('.search-button');
@@ -26,10 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 category: "Unknown"
             };
 
-            searchedDomains.set(enteredDomain, newDomainEntry);
             console.log("New domain added:", newDomainEntry);
+            
+            // Navigate to domains.html
+            window.location.href = `/domains?param=${newDomainEntry.url}`
+            // domainInput.value = '';
         }
-
-        domainInput.value = '';
     });
 });
