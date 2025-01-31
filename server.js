@@ -1,24 +1,18 @@
-require('dotenv').config()
+const express = require('express');
+const path = require('path');
 
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
-const cors = require('cors')
-const jwt = require('jsonwebtoken')
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(cors())
+// Serve static files correctly from the "public" directory
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
-mongoose.connect(process.env.DATABASE_URL)
-const db = mongoose.connection
-db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('Connected to Database'))
+// Serve index.html from the "view" folder
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'view', 'index.html'));
+});
 
-app.use(express.json())
-
-const ordersRouter = require('./routes/orders.js')
-app.use('/api/orders', ordersRouter)
-
-const usersRouter = require('./routes/users.js')
-app.use('/api/users', usersRouter)
-
-app.listen(3000, () => {console.log('Server Started')})
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+});
