@@ -1,24 +1,24 @@
 import { websiteData } from '/public/js/example_domains.js'; // Import website data
 
-// Create a Map to store the searched domains
-const searchedDomains = new Map();
+// const searchedDomains = new Map();
 
-// Function to retrieve query parameters from the URL
 function getQueryParameter(name) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(name);
 }
 
-// Function to create a new domain card for the carousel
 function createDomainCard(domain) {
     const card = document.createElement('div');
     card.classList.add('carousel-card');
     
-    // Create the content for the card
+    // If the domain is taken, add the 'taken' class to apply the red triangle
+    if (domain.isTaken) {
+        card.classList.add('taken');
+    }
+
     card.innerHTML = `
         <a href="https://${domain.url}" target="_blank">${domain.url}</a>
         <div class="category">${domain.category}</div>
-        <div class="status">${domain.isTaken ? 'Taken' : 'Available'}</div>
     `;
     
     return card;
@@ -33,16 +33,16 @@ function startAutoScroll() {
     scrollInterval = setInterval(() => {
         // Scroll the carousel by one card width
         if (carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth) {
-            // If we've reached the end, reset scroll position to the start
+            // If we've reached the end, reset position
             carousel.scrollLeft = 0;
         } else {
             carousel.scrollLeft += cardWidth;
         }
-    }, 3000); // Scroll every 3 seconds (adjustable)
+    }, 3000); // Scroll every 3 seconds
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const searchButton = document.querySelector('.search-actions');
+    const searchButton = document.querySelector('.search-button');
     const domainInput = document.querySelector('.domain-input');
 
     const popup = document.getElementById('popup');
@@ -69,9 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    loadSavedDomains(); // Load stored domains on page load
+    loadSavedDomains(); 
 
-    // Mapping domain extensions to costs
     const domainCosts = {
         '.mn': 286000,
         '.io': 110000,
@@ -97,10 +96,17 @@ document.addEventListener('DOMContentLoaded', () => {
         carousel.appendChild(domainCard);
     });
 
-    // Start the auto-scroll when the page is loaded
     startAutoScroll();
 
-    // Handle search button click
+    // TODO: Filter 
+    let listItems = document.querySelectorAll('.filter li.target-item');
+
+    listItems.forEach((item) => {
+        item.addEventListener('click', (event) => {
+            alert(`${event.currentTarget.innerHTML} item was click`);
+        });
+    });
+
     searchButton.addEventListener('click', (event) => {
         event.preventDefault(); // Prevent form submission
 
@@ -138,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedCategory = categoryDropdown.value;
         const enteredDomain = domainInput.value.trim();
 
-        // Function to count words again in the end
         function countWords(text) {
             return text.trim().split(/\s+/g).filter(a => a.trim().length > 0).length;
         }
@@ -161,8 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create new domain entry
         const newDomainEntry = {
             url: enteredDomain,
-            isTaken: true, // Set as taken
-            category: selectedCategory // Assign chosen category
+            isTaken: true,
+            category: selectedCategory
         };
 
         // Save to localStorage
@@ -173,8 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Close the popup after adding the domain
         popup.style.display = 'none';
-        descriptionInput.value = ''; // Clear the description input
-        categoryDropdown.selectedIndex = 0; // Reset dropdown
+        descriptionInput.value = '';
+        categoryDropdown.selectedIndex = 0;
 
         // Clear URL param and refresh the page
         const url = new URL(window.location);

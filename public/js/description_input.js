@@ -1,12 +1,10 @@
-// Create a class for the custom WordCount element
+// Ashiglasan material: https://github.com/mdn/web-components-examples/blob/main/word-count-web-component
 class WordCount extends HTMLParagraphElement {
     constructor() {
         super();
     
-        // Find the input field next to this word count element
         const inputField = document.getElementById('description-input');
 
-        // Function to count words
         function countWords(text) {
             return text.trim().split(/\s+/g).filter(a => a.trim().length > 0).length;
         }
@@ -19,7 +17,6 @@ class WordCount extends HTMLParagraphElement {
         text.textContent = `Words: 0`;
         text.style.color = 'black';
 
-        // Append it to shadow root
         shadow.appendChild(text);
 
         // Update count when content changes
@@ -33,7 +30,6 @@ class WordCount extends HTMLParagraphElement {
     }
 }
   
-// Define the custom element
 customElements.define('word-count', WordCount, { extends: 'p' });
   
 // Ensure the description input exists before appending word count

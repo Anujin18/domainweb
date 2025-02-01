@@ -1,8 +1,6 @@
-// Create a class for the element
+// Ashiglasan material: https://github.com/mdn/web-components-examples/blob/main/expanding-list-web-component
 class ExpandingList extends HTMLUListElement {
   constructor() {
-    // Always call super first in constructor
-    // Return value from super() is a reference to this element
     self = super();
   }
 
@@ -17,7 +15,6 @@ class ExpandingList extends HTMLUListElement {
       ul.style.display = "none";
     });
 
-    // Look through each li element in the ul
     lis.forEach((li) => {
       // If this li has a ul as a child, decorate it and add a click handler
       if (li.querySelectorAll("ul").length > 0) {

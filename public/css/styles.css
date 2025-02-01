@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Styling for the Login and My Domain buttons to look like the search button */
-.mydomain-button, .login-button {
+.domain-button, .mydomain-button, .login-button {
     background: linear-gradient(90deg, #a05eda, #6a1b9a);
     color: white;
     border-radius: 50px;
@@ -102,10 +102,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero Section */
 .hero {
+    /* padding-top: 100px; */
     background: linear-gradient(to top left, #ffffff, #bd73f2);
     color: var(--text-color);
     text-align: center;
-    padding: 15vh var(--spacing-medium); /* Adjusting padding for full screen */
+    padding: 20vh var(--spacing-medium); /* Adjusting padding for full screen */
     position: relative;
     overflow: hidden;
     display: flex;
