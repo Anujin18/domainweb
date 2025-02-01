@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle search button click
     searchButton.addEventListener('click', () => {
         const enteredDomain = domainInput.value.trim();
-
+        
         if (!enteredDomain) {
             console.warn("Please enter a domain before searching.");
             return;
@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Validate if the extension is valid
             if (domainCosts[domainExtension]) {
                 const cost = domainCosts[domainExtension];
+                
                 domainCostElement.textContent = `${cost}₮`;
 
                 // Show the popup for description and cost
@@ -128,10 +129,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle the "Add Domain" button click in the popup
     addDomainButton.addEventListener('click', () => {
         const description = descriptionInput.value.trim();
-    
+        
+        // Function to count words again in the end
+        function countWords(text) {
+            return text.trim().split(/\s+/g).filter(a => a.trim().length > 0).length;
+        }
+
+        const wordCount = countWords(description);
+
         if (!description) {
-        alert("Description is required!");
-        return;
+            alert("Description is required!");
+            return;
+        } 
+        else if (wordCount < 10) {
+            alert("Your description must be at least 10 words long.");
+            return;
         }
     
         console.log("Domain added with description:", description);
