@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&display=swap');
+
+:root {
+    /* Primary colors */
+    --primary-color: #bd73f2;
+    --secondary-color: #f44336;
+    --background-gradient: linear-gradient(to top left, #ffffff, #bd73f2);
+    --text-color: #333333;
+
+    /* Accent colors */
+    --accent-pink: #e91e63;
+    --accent-blue: #2196f3;
+    --accent-purple: #ba7ac5;
+
+    /* Typography */
+    --font-family-primary: 'Noto Sans Mongolian', sans-serif;
+    --font-family-secondary: 'Roboto', sans-serif;
+    --font-size-base: 1rem;  /* This is 16px by default */
+    --font-size-large: 1.5rem;  /* 24px */
+    --font-size-small: 0.875rem;  /* 14px */
+
+    /* Spacing */
+    --spacing-small: 0.5rem;  /* 8px */
+    --spacing-medium: 1rem;  /* 16px */
+    --spacing-large: 1.5rem;  /* 24px */
+
+    /* Border radius */
+    --border-radius: 0.5rem;  /* 8px */
+
+    /* Shadows */
+    --box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);  /* 2px 5px */
+    --box-shadow-hover: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);  /* 4px 10px */
+
+    --max-width: 1200px; /* Maintain in px */
+}
+

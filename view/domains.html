@@ -33,11 +33,11 @@
     }
 
     .open::before {
-      background-image: url(/public/img/white_right_arrow.png);
+      background-image: url(/public/assets/right.png);
     }
 
     .closed::before {
-      background-image: url(/public/img/white_down_arrow.png);
+      background-image: url(/public/assets/down.png);
     }
 
     .closed .closed::before,
@@ -127,40 +127,26 @@
 <body>
   <nav class="navbar">
     <section class="navbar-left">
-      <a href="/" class="logo-link">
-        <img src="/src/assets/logo.jpg" alt="Logo" class="logo">
-        <span class="brand-name">Limitless</span>
-      </a>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <a href="#" class="nav-item">Hosting</a>
-          <span class="chevron">&#9662;</span>
-        </li>
-        <li>
-          <a href="#" class="nav-item">Website Builder</a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="nav-item">Domain</a>
-          <span class="chevron">&#9662;</span>
-        </li>
-        <li>
-          <a href="#" class="nav-item">Pricing</a>
-        </li>
-      </ul>
+        <span class="brand-name">MonDomain</span>
     </section>
     <section class="navbar-right">
+      <a href="/mydomain" class="mydomain-button">My Domain</a>
       <a href="/login" class="login-button">Login</a>
     </section>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Protect Your Brand with<br>Trusted Domain Security</h1>
-    <p>We provide reliable hosting services to power your website. Find the perfect<br>domain for your website and get started on your online journey today</p>
-    <div class="search-bar">
-        <input type="text" placeholder="Enter your domain name (e.g. website.com)" class="domain-input"/>
-        <button class="search-button">Search</button>
-    </div>
+    <header>
+      <h1>Protect Your <span class="gradient-text">Brand</span> with <br> Trusted Domain <span class="gradient-text">Security</span></h1>
+
+      <p>We provide reliable hosting services to power your website. Find the perfect<br>domain for your website and get started on your online journey today.</p>
+
+    </header>
+    <form class="search-actions">
+        <input id="domain-search" type="text" placeholder="Enter your domain name (e.g. website.com)" class="domain-input" />
+        <button type="submit" class="search-button">Search</button>
+    </form>
     <span class="domain-extensions">
         <span>.com</span>
         <span>.co.id</span>
@@ -169,12 +155,54 @@
         <span>.online</span>
         <span>.xyz</span>
     </span>
+
+    <h2>Filter</h2>
+    <ul is="expanding-list">
+      <li>
+        Алдартай
+        <ul>
+          <li>.mn     286,000.00₮    1 жил</li>
+          <li>.io     110,000.00₮    1 жил</li>
+          <li>.biz    121,000.00₮    1 жил</li>
+          <li>.info   176,000.00₮    1 жил</li>
+        </ul>
+      </li>
+      <li>
+        Бусад
+        <ul>
+          <li>.asia   110,000.00₮    1 жил</li>
+          <li>.cc     110,000.00₮    1 жил</li>
+          <li>.mobi   242,000.00₮    1 жил</li>
+          <li>.name   110,000.00₮    1 жил</li>
+          <li>.tv     220,000.00₮    1 жил</li>
+          <li>.мон    55,000.00₮     1 жил</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section class="carousel-container">
+    <h2>Available Domains</h2>
+    <div class="carousel"></div>
   </section>
 
   <!-- Popup for Domain Details -->
   <div class="popup" id="popup">
     <div class="popup-content">
       <h3 style="color:black">Domain Details</h3>
+      <label for="category-dropdown">Select Category:</label>
+      <select id="category-dropdown" required>
+          <option value="Хэвлэл мэдээлэл">Хэвлэл мэдээлэл</option>
+          <option value="Цахим худалдаа">Цахим худалдаа</option>
+          <option value="Төрийн болон нийтийн үйлчилгээ">Төрийн болон нийтийн үйлчилгээ</option>
+          <option value="Боловсрол">Боловсрол</option>
+          <option value="Үзвэр үйлчилгээ ба өдөр тутмын">Үзвэр үйлчилгээ ба өдөр тутмын</option>
+          <option value="Аялал жуулчлал">Аялал жуулчлал</option>
+          <option value="Сошиал медиа ба форумууд">Сошиал медиа ба форумууд</option>
+          <option value="Санхүү ба бизнес">Санхүү ба бизнес</option>
+          <option value="Бусад төрөл">Бусад төрөл</option>
+      </select>
+  
       <input type="text" id="description-input" placeholder="Enter short description" required>
       <p style="color:black">Cost: <span id="domain-cost">0</span></p>
       <button id="add-domain">Add Domain</button>
@@ -182,67 +210,60 @@
     </div>
   </div>
 
-  <h2>Filter</h2>
-  <ul is="expanding-list">
-    <li>
-      Алдартай
-      <ul>
-        <li>.mn     286,000.00₮    1 жил</li>
-        <li>.io     110,000.00₮    1 жил</li>
-        <li>.biz    121,000.00₮    1 жил</li>
-        <li>.info   176,000.00₮    1 жил</li>
-      </ul>
-    </li>
-    <li>
-      Бусад
-      <ul>
-        <li>.asia   110,000.00₮    1 жил</li>
-        <li>.cc     110,000.00₮    1 жил</li>
-        <li>.mobi   242,000.00₮    1 жил</li>
-        <li>.name   110,000.00₮    1 жил</li>
-        <li>.tv     220,000.00₮    1 жил</li>
-        <li>.мон    55,000.00₮     1 жил</li>
-      </ul>
-    </li>
-  </ul>
-  
-  <section class="carousel-container">
-    <h2>Available Domains</h2>
-    <div class="carousel">
-      <!-- Domain cards will be appended here dynamically -->
-    </div>
-  </section>
-
   <!-- Footer Section -->
   <footer class="footer">
-    <section class="footer-content">
-      <section class="footer-brand">
-        <img src="logo.svg" alt="MonDomain" class="logo">
-        <p class="tagline">We provide top-tier technology and support for online success.</p>
-        <nav class="social-links">
-          <a href="#" aria-label="Instagram"><img src="instagram.svg" alt="Instagram"></a>
-          <a href="#" aria-label="FaceBook"><img src="facebook.svg" alt="FaceBook"></a>
-          <a href="#" aria-label="Twitter"><img src="twitter.svg" alt="Twitter"></a>
-          <a href="#" aria-label="Linkedin"><img src="linkedin.svg" alt="Linkedin"></a>
-        </nav>
-      </section>
-      <nav class="footer-nav">
-        <section class="footer-column">
-          <h3>Contact Us</h3>
-          <ul>
-            <li>location</li>
-            <li>+97694091983</li>
-            <li>anujinemt@gmail.com</li>
-          </ul>
-          <h3>MonDomain XXK</h3>
-          <ul>
-            <li><a href="#"></a>Domain</li>
-            <li>dmkse</li>
-            <li>mxiodskls</li>
-          </ul>
-        </section>
-      </nav>
-    </section>
+    <div class="footer-row">
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul class="links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Compressions</a></li>
+          <li><a href="#">Customers</a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="#">Collection</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul class="links">
+          <li><a href="#">Free Designs</a></li>
+          <li><a href="#">Latest Designs</a></li>
+          <li><a href="#">Themes</a></li>
+          <li><a href="#">Popular Designs</a></li>
+          <li><a href="#">Art Skills</a></li>
+          <li><a href="#">New Uploads</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul class="links">
+          <li><a href="#">Customer Agreement</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">GDPR</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">Media Kit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>
+          Subscribe to our newsletter for a weekly dose
+          of news, updates, helpful tips, and
+          exclusive offers.
+        </p>
+        <form action="#">
+          <input type="text" placeholder="Your email" required>
+          <button type="submit">SUBSCRIBE</button> 
+        </form>
+        <div class="icons">
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-github"></i>
+        </div>
+      </div>
+    </div>
   </footer>
   <script src="/public/js/expandable_list.js" defer></script>
   <script type="module" src="/public/js/domains.js"></script>

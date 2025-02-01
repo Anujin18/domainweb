@@ -4,29 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.querySelector('.search-button');
     const domainInput = document.querySelector('.domain-input');
 
-    searchButton.addEventListener('click', () => {
+    searchButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent form submission
+
         const enteredDomain = domainInput.value.trim();
 
         if (!enteredDomain) {
-            console.warn("Please enter a domain before searching.");
+            alert("Please enter a domain before searching.");
             return;
         }
 
         const existingDomain = websiteData.find(site => site.url === enteredDomain);
-
+        console.log(existingDomain);
         if (existingDomain) {
-            console.log(`Domain already exists:`, existingDomain);
+            alert(`Domain already exists:`, existingDomain);
         } else {
-            const newDomainEntry = {
-                url: enteredDomain,
-                isTaken: false,
-                category: "Unknown"
-            };
-
-            console.log("New domain added:", newDomainEntry);
-            
             // Navigate to domains.html
-            window.location.href = `/domains?param=${newDomainEntry.url}`
+            window.location.href = `/domains?param=${enteredDomain}`
             // domainInput.value = '';
         }
     });

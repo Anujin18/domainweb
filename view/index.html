@@ -6,60 +6,31 @@
   <title>MonDomain</title>
   <link rel="stylesheet" href="/public/css/styles.css">
   <link rel="stylesheet" href="/public/css/footer.css">
+  <script type="module" src="/public/js/pricing-toggle.js" defer></script>
 </head>
 <body>
-  <!-- Header Section -->
-  <!-- <header>
-    <div class="logo">MyLogo</div>
-    <nav>
-        <a href="#mainpage">MonDomain</a>
-        <select name = "Hosting" id = "host">
-            <option value="cnskjc ">nxak</option>
-        </select>
-        <a href="#webbuilder">Website Builder</a>
-        <select name="Domain" id="Domain">
-            <option value="ncdslk">ncsjk</option>
-        </select>
-        <a href="#pricing">Pricing</a>
-        <a href="#login">Login</a>
-    </nav>
-  </header> -->
   <nav class="navbar">
     <section class="navbar-left">
-      <a href="/" class="logo-link">
-        <img src="/src/assets/logo.jpg" alt="Logo" class="logo">
-        <span class="brand-name">Limitless</span>
-      </a>
-      <ul class="nav-links">
-        <li class="dropdown">
-          <a href="#" class="nav-item">Hosting</a>
-          <span class="chevron">&#9662;</span>
-        </li>
-        <li>
-          <a href="#" class="nav-item">Website Builder</a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="nav-item">Domain</a>
-          <span class="chevron">&#9662;</span>
-        </li>
-        <li>
-          <a href="#" class="nav-item">Pricing</a>
-        </li>
-      </ul>
+        <span class="brand-name">MonDomain</span>
     </section>
     <section class="navbar-right">
+      <a href="/mydomain" class="mydomain-button">My Domain</a>
       <a href="/login" class="login-button">Login</a>
     </section>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Protect Your Brand with<br>Trusted Domain Security</h1>
-    <p>We provide reliable hosting services to power your website. Find the perfect<br>domain for your website and get started on your online journey today</p>
-    <div class="search-bar">
-        <input type="text" placeholder="Enter your domain name (e.g. website.com)" class="domain-input"/>
-        <button class="search-button">Search</button>
-    </div>
+    <header>
+      <h1>Protect Your <span class="gradient-text">Brand</span> with <br> Trusted Domain <span class="gradient-text">Security</span></h1>
+
+      <p>We provide reliable hosting services to power your website. Find the perfect<br>domain for your website and get started on your online journey today.</p>
+
+    </header>
+  <form class="search-actions">
+      <input id="domain-search" type="text" placeholder="Enter your domain name (e.g. website.com)" class="domain-input" />
+      <button type="submit" class="search-button">Search</button>
+  </form>
     <span class="domain-extensions">
         <span>.com</span>
         <span>.co.id</span>
@@ -70,48 +41,43 @@
     </span>
   </section>
 
-  <!-- <section class="brands">
-    <p class="brand-title">Trusted by leading company</p>
-    <div class="brand-logo">
-        <span>stripe</span>
-        <span>PHILIPS</span>
-        <span>adidas</span>
-        <span>monday.com</span>
-        <span>gusto</span>
-        <span>Upwork</span>
-        <span>Figma</span>
-    </div>
-  </section> -->
 
   <section class="features">
     <article class="features-container">
       <section class="features-text">
         <h2 class="features-title">
-          Hosting with <span class="highlight">advanced</span><br />
-          features and <span class="highlight">quality</span>
+          Hosting with <span class="gradient-text">advanced</span><br />
+          features and <span class="gradient-text">quality</span>
         </h2>
         <p class="features-description">
-          Our hosting services offer an unbeatable uptime guarantee, ensuring your 
-          website stays online 24/7.
+          Our service comes with an unbeatable uptime guarantee, ensuring your <br>website is always online.
         </p>
         <ul class="features-list">
           <li>
             <span class="bullet"></span>
-            <span>99.9% uptime reliability</span>
+            <span>📌Large storage capacity</span>
           </li>
           <li>
             <span class="bullet"></span>
-            <span>Free website migration</span>
+            <span>📌Free website migration</span>
           </li>
           <li>
             <span class="bullet"></span>
-            <span>24/7 expert support</span>
+            <span>📌Uptime guarantee</span>
+          </li>
+          <li>
+            <span class="bullet"></span>
+            <span>📌24/7 priority support</span>
+          </li>
+          <li>
+            <span class="bullet"></span>
+            <span>📌Protect from malware and threats</span>
           </li>
         </ul>
       </section>
       <figure class="features-image">
         <img 
-          src="/api/placeholder/500/400" 
+          src="/public/assets/features_icon.png" 
           alt="Features illustration" 
           class="rounded-image"
         />
@@ -121,83 +87,67 @@
 
   
   <section class="hosting-plan">
-    <h2>Choose your hosting plan</h2>
-    <p>Discover our range of hosting plans designed to accommodate websites of<br>all sizes and requirement</p>
-    <label class="switch">
-      <label>Monthly</label>
-        <input type="checkbox">
-        <span class="slider round"></span>
-      <label>Yearly</label>
-    </label>
-    <div class="pricing-cards">
-        <span class="pricing-card">
-            <h3>Basic</h3>
-            <p>Suit for personal websites and blogs</p>
-            <div class="price">$2.99<span>/month</span></div>
-            <button class="choose-plan">Choose Plan</button>
-            <ul class="features-list">
-                <li>1 Website</li>
-                <li>10 GB Storage</li>
-                <li>Unlimited Bandwidth</li>
-                <li>Free SSL Certificate</li>
-                <li>24/7 Support</li>
-            </ul>
-        </span>
-        <span class="pricing-card">
-            <h3>Premium</h3>
-            <p>Suit for small/medium sized business</p>
-            <div class="price">$5.99<span>/month</span></div>
-            <button class="choose-plan">Choose Plan</button>
-            <ul class="features-list">
-                <li>5 Website</li>
-                <li>50 GB Storage</li>
-                <li>Unlimited Bandwidth</li>
-                <li>Free domain name</li>
-                <li>Free SSL Certificate</li>
-                <li>24/7 Support</li>
-            </ul>
-        </span>
-        <span class="pricing-card">
-            <h3>Ultra</h3>
-            <p>Suit for high traffic websites</p>
-            <div class="price">$12.99<span>/month</span></div>
-            <button class="choose-plan">Choose Plan</button>
-            <ul class="features-list">
-                <li>Unlimited Website</li>
-                <li>Unlimited Storage</li>
-                <li>Unlimited Bandwidth</li>
-                <li>Free domain name</li>
-                <li>Free SSL Certificate</li>
-                <li>Dedicated IP address</li>
-                <li>24/7 priority support</li>
-            </ul>
-        </span>
-    </div>
+      <h2>Choose your hosting <span class="gradient-text">plan</span></h2>
+      <p>Discover our range of hosting plans designed to accommodate websites of<br>all sizes and requirements.</p>
+      <label class="switch">
+        <div class="switch-container">
+          <span id="monthly-text" class="switch-text active">Monthly</span>
+          <input type="checkbox" id="pricing-toggle">
+          <span class="slider round"></span>
+          <span id="yearly-text" class="switch-text">Yearly</span>
+        </div>
+      </label>
+      <div class="pricing-cards">
+          <span class="pricing-card">
+              <h3>Basic</h3>
+              <p>Suit for personal websites and blogs</p>
+              <div class="price" id="basic-price">$2.99<span>/month</span></div>
+              <button class="choose-plan">Choose Plan</button>
+              <ul class="features-list">
+                  <li>1 Website</li>
+                  <li>10 GB Storage</li>
+                  <li>Unlimited Bandwidth</li>
+                  <li>Free SSL Certificate</li>
+                  <li>24/7 Support</li>
+              </ul>
+          </span>
+          <span class="pricing-card">
+              <h3>Premium</h3>
+              <p>Suit for small/medium sized business</p>
+              <div class="price" id="premium-price">$5.99<span>/month</span></div>
+              <button class="choose-plan">Choose Plan</button>
+              <ul class="features-list">
+                  <li>5 Website</li>
+                  <li>50 GB Storage</li>
+                  <li>Unlimited Bandwidth</li>
+                  <li>Free domain name</li>
+                  <li>Free SSL Certificate</li>
+                  <li>24/7 Support</li>
+              </ul>
+          </span>
+          <span class="pricing-card">
+              <h3>Ultra</h3>
+              <p>Suit for high traffic websites</p>
+              <div class="price" id="ultra-price">$12.99<span>/month</span></div>
+              <button class="choose-plan">Choose Plan</button>
+              <ul class="features-list">
+                  <li>Unlimited Website</li>
+                  <li>Unlimited Storage</li>
+                  <li>Unlimited Bandwidth</li>
+                  <li>Free domain name</li>
+                  <li>Free SSL Certificate</li>
+                  <li>Dedicated IP address</li>
+                  <li>24/7 priority support</li>
+              </ul>
+          </span>
+      </div>
   </section>
 
-  <!-- <section class="Comments">
-    <h2>What our client say</h2>
-    <p>Read through the stories shared by our customers about their experiences using Limitless</p>
-    <div class="comments">
-        <span class="comment">
-            <p>"Switching to Limitless was a game-changer for my business. The uptime is exceptional, and the support team is incredibly responsive. I highly recommend their hosting services."</p>
-            <div class="authors">
-              <img class="author-img" src="" alt="">
-              <span class="author">
-                <div class="author-name">Supri Suello</div>
-                <div class="author-title">Freelance Photographer</div>
-              </span>
-              <span class="rating">
-                <span>5.0</span>
-              </span>
-            </div>
-        </span>
-        <button class="see-all">See All</button>
-    </div>
-  </section> -->
+
+  
 
   <section class="faq-section">
-    <h2 class="faq-title">FAQ's</h2>
+    <h2 class="faq-title">FAQ'<span class="gradient-text">s</span></h2>
     <article class="faq-container">
       <details class="faq-item">
         <summary class="faq-section">
@@ -258,35 +208,62 @@
 
   <!-- Footer Section -->
   <footer class="footer">
-    <section class="footer-content">
-      <section class="footer-brand">
-        <img src="logo.svg" alt="MonDomain" class="logo">
-        <p class="tagline">We provide top-tier technology and support for online success.</p>
-        <nav class="social-links">
-          <a href="#" aria-label="Instagram"><img src="instagram.svg" alt="Instagram"></a>
-          <a href="#" aria-label="FaceBook"><img src="facebook.svg" alt="FaceBook"></a>
-          <a href="#" aria-label="Twitter"><img src="twitter.svg" alt="Twitter"></a>
-          <a href="#" aria-label="Linkedin"><img src="linkedin.svg" alt="Linkedin"></a>
-        </nav>
-      </section>
-      <nav class="footer-nav">
-        <section class="footer-column">
-          <h3>Contact Us</h3>
-          <ul>
-            <li>location</li>
-            <li>+97694091983</li>
-            <li>anujinemt@gmail.com</li>
-          </ul>
-          <h3>MonDomain XXK</h3>
-          <ul>
-            <li><a href="#"></a>Domain</li>
-            <li>dmkse</li>
-            <li>mxiodskls</li>
-          </ul>
-        </section>
-      </nav>
-    </section>
+    <div class="footer-row">
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul class="links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Compressions</a></li>
+          <li><a href="#">Customers</a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="#">Collection</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul class="links">
+          <li><a href="#">Free Designs</a></li>
+          <li><a href="#">Latest Designs</a></li>
+          <li><a href="#">Themes</a></li>
+          <li><a href="#">Popular Designs</a></li>
+          <li><a href="#">Art Skills</a></li>
+          <li><a href="#">New Uploads</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul class="links">
+          <li><a href="#">Customer Agreement</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">GDPR</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">Media Kit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>
+          Subscribe to our newsletter for a weekly dose
+          of news, updates, helpful tips, and
+          exclusive offers.
+        </p>
+        <form action="#">
+          <input type="text" placeholder="Your email" required>
+          <button type="submit">SUBSCRIBE</button> 
+        </form>
+        <div class="icons">
+          <i class="fa-brands fa-facebook-f"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-brands fa-github"></i>
+        </div>
+      </div>
+    </div>
   </footer>
   <script type="module" src="/public/js/homePage.js"></script>
+=======
+  <!-- <script src="/public/js/light-mode.js"></script> -->
+
 </body>
 </html>
