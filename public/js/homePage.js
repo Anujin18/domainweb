@@ -1,5 +1,3 @@
-import { websiteData } from '/public/js/example_domains.js'; // Import website data
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.querySelector('.search-button');
     const domainInput = document.querySelector('.domain-input');
@@ -27,20 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const existingDomain = websiteData.find(site => site.url === enteredDomain);
-        console.log(existingDomain);
-        if (existingDomain) {
-            alert(`Domain already exists:`, existingDomain);
-        } else {
-            const domainExtension = enteredDomain.slice(enteredDomain.lastIndexOf('.'));
+        
+        const domainExtension = enteredDomain.slice(enteredDomain.lastIndexOf('.'));
 
-            // Validate if the extension is valid
-            if (domainCosts[domainExtension]) {
-                window.location.href = `/domains?param=${enteredDomain}`
-                // domainInput.value = '';
-            } else {
-                alert("Invalid domain extension or domain not supported.");
-            }
+        // Validate if the extension is valid
+        if (domainCosts[domainExtension]) {
+            window.location.href = `/domains?param=${enteredDomain}`
+        } else {
+            alert("Invalid domain extension or domain not supported.");
         }
     });
 });

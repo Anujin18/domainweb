@@ -18,13 +18,13 @@ const domainCosts = {
 };
 
 // Declare storedDomains globally
-let storedDomains = JSON.parse(localStorage.getItem('savedDomains')) || [];
+const storedDomains = JSON.parse(localStorage.getItem('savedDomains')) || [];
 
 function createDomainCard(domain) {
     const card = document.createElement('div');
     card.classList.add('domain-card');
     
-    // If the domain is taken, add the red triangle
+    // If the domain is taken, add the 'taken' class to apply the red triangle
     if (domain.isTaken) {
         card.classList.add('taken');
     }
@@ -37,33 +37,14 @@ function createDomainCard(domain) {
     return card;
 }
 
-function sortDomains(domains) {
-    const sr = domains.sort((a, b) => a.url.localeCompare(b.url)); // alphabetical
-    return sr;
-}
-
-function populateGrid(domains) {
-    domainGrid.innerHTML = ''; // Clear the grid before populating
-    domains.forEach(domain => {
+// Populate the domain grid with existing domains from websiteData
+document.addEventListener('DOMContentLoaded', () => {    
+    websiteData.forEach(domain => {
         const domainCard = createDomainCard(domain);
         domainGrid.appendChild(domainCard);
     });
-}
-
-// Populate the domain grid with existing domains from websiteData
-document.addEventListener('DOMContentLoaded', () => {
-    const sortedWebsiteData = sortDomains(websiteData);
-    const sortedStoredDomains = sortDomains(storedDomains); // Sort saved domains
-
-    // Combine both websiteData and storedDomains to show all
-    const allDomains = [...sortedWebsiteData, ...sortedStoredDomains];
-
-    populateGrid(allDomains);
-
-    // const sortedWebsiteData = sortDomains(websiteData);
     
-    // populateGrid(sortedWebsiteData);
-    
+    // Function to retrieve query parameters from the URL
     function getQueryParameter(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
@@ -71,8 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load saved domains from localStorage
     function loadSavedDomains() {
-        storedDomains = sortDomains(storedDomains);
-        populateGrid(storedDomains);
+        storedDomains.forEach(domain => {
+            const domainCard = createDomainCard(domain);
+            domainGrid.appendChild(domainCard);
+        });
     }
 
     loadSavedDomains();
@@ -88,13 +71,24 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     const listItems = document.querySelectorAll('.filter li.target-item');
     
+    // Function to clear the domain grid
+    function clearGrid() {
+        domainGrid.innerHTML = '';
+    }
+
+    // Function to update the grid based on filter criteria
     function updateGrid(filterValue) {
+        clearGrid(); // Clear existing grid content
+
         const filteredData = websiteData.filter(domain => 
             domain.category === filterValue || domain.url.endsWith(filterValue)
         );
 
-        const sortedData = sortDomains(filteredData);
-        populateGrid(sortedData);
+        // Populate the grid with filtered data
+        filteredData.forEach(domain => {
+            const domainCard = createDomainCard(domain);
+            domainGrid.appendChild(domainCard);
+        });
 
         if (filteredData.length === 0) {
             const noResultsMessage = document.createElement('div');
@@ -104,57 +98,19 @@ window.addEventListener('load', () => {
         }
     }
 
+    // Add click event listeners to filter items
     listItems.forEach((item) => {
         item.addEventListener('click', (event) => {
-            const filterValue = event.currentTarget.innerHTML.trim();
-            updateGrid(filterValue);
+            const filterValue = event.currentTarget.innerHTML.trim(); // Get the filter value
+            updateGrid(filterValue); // Update the grid with the filter
         });
     });
 
-    const sortedData = sortDomains(websiteData);
-    populateGrid(sortedData);
-
-    // function clearGrid() {
-    //     domainGrid.innerHTML = '';
-    // }
-
-    // function updateGrid(filterValue) {
-    //     clearGrid();
-
-    //     const filteredData = websiteData.filter(domain => 
-    //         domain.category === filterValue || domain.url.endsWith(filterValue)
-    //     );
-
-    //     const sortedData = sortDomains(filteredData);
-
-    //     // Populate the grid with filtered data
-    //     sortedData.forEach(domain => {
-    //         const domainCard = createDomainCard(domain);
-    //         domainGrid.appendChild(domainCard);
-    //     });
-
-    //     if (filteredData.length === 0) {
-    //         const noResultsMessage = document.createElement('div');
-    //         noResultsMessage.textContent = 'No matching domains found.';
-    //         noResultsMessage.style.color = 'red';
-    //         domainGrid.appendChild(noResultsMessage);
-    //     }
-    // }
-
-    // // Add click event listeners to filter items
-    // listItems.forEach((item) => {
-    //     item.addEventListener('click', (event) => {
-    //         const filterValue = event.currentTarget.innerHTML.trim(); // Get the filter value
-    //         updateGrid(filterValue); // Update the grid with the filter
-    //     });
-    // });
-
-    // // Populate the grid initially with all data
-    // const sortedData = sortDomains(websiteData);
-    // sortedData.forEach(domain => {
-    //     const domainCard = createDomainCard(domain);
-    //     domainGrid.appendChild(domainCard);
-    // });
+    // Populate the grid initially with all data
+    websiteData.forEach(domain => {
+        const domainCard = createDomainCard(domain);
+        domainGrid.appendChild(domainCard);
+    });
 });
 
 
@@ -193,15 +149,8 @@ document.querySelector('.search-button').addEventListener('click', (event) => {
 document.getElementById('add-domain').addEventListener('click', () => {
     const description = document.getElementById('description-input').value.trim();
     const selectedCategory = document.getElementById('category-dropdown').value;
+    
     const enteredDomain = domainInput.value.trim();
-
-    // Check if the entered domain is already in localStorage or taken
-    const existingDomain = storedDomains.find(domain => domain.url === enteredDomain);
-
-    if (existingDomain) {
-        alert(`Domain already exists and is taken: ${enteredDomain}`);
-        return; // Don't add the domain if it already exists
-    }
 
     function countWords(text) {
         return text.trim().split(/\s+/g).filter(a => a.trim().length > 0).length;
@@ -229,13 +178,9 @@ document.getElementById('add-domain').addEventListener('click', () => {
         category: selectedCategory
     };
 
-    // console.log(newDomainEntry);
-
     // Save to localStorage
     storedDomains.push(newDomainEntry);
     localStorage.setItem('savedDomains', JSON.stringify(storedDomains));
-
-    populateGrid([...websiteData, newDomainEntry]);
 
     console.log("New domain added and saved:", newDomainEntry);
 
@@ -245,10 +190,10 @@ document.getElementById('add-domain').addEventListener('click', () => {
     document.getElementById('category-dropdown').selectedIndex = 0;
 
     // Clear URL param and refresh the page
-    // const url = new URL(window.location);
-    // url.searchParams.delete("param");
-    // window.history.replaceState({}, document.title, url); // Update URL without param
-    // location.reload(); // Refresh page
+    const url = new URL(window.location);
+    url.searchParams.delete("param");
+    window.history.replaceState({}, document.title, url); // Update URL without param
+    location.reload(); // Refresh page
 });
 
 // Close the popup
