@@ -1,8 +1,20 @@
-import { websiteData } from '/public/js/example_domains.js'; // Import website data
+import Domain from './domains.js';
+import Data from "./data.js";
+import Cart from "./cart.js";
+
+const apiUrl = "https://api.jsonbin.io/v3/b/679fbb65e41b4d34e482e39e?meta=false";
+const dataInstance = new Data(apiUrl);
 
 // const searchedDomains = new Map();
 const domainGrid = document.querySelector('.domain-grid');
 const domainInput = document.querySelector('.domain-input');
+const cartContainer = document.querySelector("cart-container");
+
+const cart = new Cart();
+const app = { cart, domains: new Map() };
+
+// Expose app globally
+window.app = app;
 
 const domainCosts = {
     '.mn': 286000,
@@ -18,52 +30,89 @@ const domainCosts = {
 };
 
 // Declare storedDomains globally
-const storedDomains = JSON.parse(localStorage.getItem('savedDomains')) || [];
+let storedDomains = JSON.parse(localStorage.getItem('savedDomains')) || [];
+
+// Function to create domain instances and populate `app.domains`
+function createDomainInstances(domains) {
+    const domainInstances = domains.map(domain => new Domain(domain.url, domain.isTaken, domain.category));
+    
+    // Populate `app.domains` map
+    domainInstances.forEach(domain => app.domains.set(domain.url, domain));
+
+    return domainInstances;
+}
+
+function populateGrid(domains) {
+    domainGrid.innerHTML = ''; // Clear the grid before populating
+    domains.forEach(domain => {
+        const domainCard = createDomainCard(domain);
+        domainGrid.appendChild(domainCard);
+    });
+}
+
+function sortDomains(domains) {
+    return domains.sort((a, b) => a.url.localeCompare(b.url)); // alphabetical
+}
 
 function createDomainCard(domain) {
     const card = document.createElement('div');
     card.classList.add('domain-card');
     
-    // If the domain is taken, add the 'taken' class to apply the red triangle
+    // If the domain is taken, add the red triangle
     if (domain.isTaken) {
         card.classList.add('taken');
     }
 
     card.innerHTML = `
-        <a href="https://${domain.url}" target="_blank">${domain.url}</a>
+        <a target="_blank">${domain.url}</a>
         <div class="category">${domain.category}</div>
+        <button class="add-to-cart" ${domain.isTaken ? "disabled" : ""} 
+            onclick="app.cart.addDomain(app.domains.get('${domain.url}')); app.refreshCart();">
+            🛒 Add to Cart
+        </button>
     `;
     
     return card;
 }
 
-// Populate the domain grid with existing domains from websiteData
-document.addEventListener('DOMContentLoaded', () => {    
-    websiteData.forEach(domain => {
-        const domainCard = createDomainCard(domain);
-        domainGrid.appendChild(domainCard);
-    });
-    
-    // Function to retrieve query parameters from the URL
-    function getQueryParameter(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
+function getQueryParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+// Refresh cart UI
+app.refreshCart = () => {
+    const cartContainer = document.querySelector(".cart-container"); // Re-select it to avoid null errors
+    if (!cartContainer) {
+        console.error("Error: Cart container not found in the DOM.");
+        return;
     }
+    cartContainer.innerHTML = cart.render();
+};
 
-    // Load saved domains from localStorage
-    function loadSavedDomains() {
-        storedDomains.forEach(domain => {
-            const domainCard = createDomainCard(domain);
-            domainGrid.appendChild(domainCard);
-        });
-    }
+// Event listener: Fetch data and populate the grid on page load
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        await dataInstance.fetchData();
 
-    loadSavedDomains();
+        // Convert Map values to an array and extract domains
+        const sortedWebsiteData = sortDomains(Array.from(dataInstance.domains.values()));
 
-    // Get the parameter 'param' from the URL and display it
-    const paramValue = getQueryParameter("param");
-    if (paramValue != null) {
-        domainInput.value = `${paramValue}`;
+        // Sort and merge stored domains
+        const sortedStoredDomains = sortDomains(storedDomains);
+
+        // Convert to instances and populate `app.domains`
+        const allDomains = createDomainInstances([...sortedWebsiteData, ...sortedStoredDomains]);
+
+        populateGrid(allDomains);
+
+        // Get the parameter 'param' from the URL and display it
+        const paramValue = getQueryParameter("param");
+        if (paramValue != null) {
+            domainInput.value = `${paramValue}`;
+        }
+    } catch (error) {
+        console.error("Failed to fetch website data:", error);
     }
 });
 
@@ -71,24 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     const listItems = document.querySelectorAll('.filter li.target-item');
     
-    // Function to clear the domain grid
-    function clearGrid() {
-        domainGrid.innerHTML = '';
-    }
-
-    // Function to update the grid based on filter criteria
     function updateGrid(filterValue) {
-        clearGrid(); // Clear existing grid content
-
-        const filteredData = websiteData.filter(domain => 
+        const filteredData = dataInstance.websiteData.filter(domain => 
             domain.category === filterValue || domain.url.endsWith(filterValue)
         );
 
-        // Populate the grid with filtered data
-        filteredData.forEach(domain => {
-            const domainCard = createDomainCard(domain);
-            domainGrid.appendChild(domainCard);
-        });
+        const sortedData = sortDomains(filteredData);
+        populateGrid(sortedData);
 
         if (filteredData.length === 0) {
             const noResultsMessage = document.createElement('div');
@@ -98,19 +136,15 @@ window.addEventListener('load', () => {
         }
     }
 
-    // Add click event listeners to filter items
     listItems.forEach((item) => {
         item.addEventListener('click', (event) => {
-            const filterValue = event.currentTarget.innerHTML.trim(); // Get the filter value
-            updateGrid(filterValue); // Update the grid with the filter
+            const filterValue = event.currentTarget.innerHTML.trim();
+            updateGrid(filterValue);
         });
     });
 
-    // Populate the grid initially with all data
-    websiteData.forEach(domain => {
-        const domainCard = createDomainCard(domain);
-        domainGrid.appendChild(domainCard);
-    });
+    const sortedData = sortDomains(dataInstance.websiteData);
+    populateGrid(sortedData);
 });
 
 
@@ -124,7 +158,7 @@ document.querySelector('.search-button').addEventListener('click', (event) => {
         return;
     }
 
-    const existingDomain = websiteData.find(site => site.url === domainInput);
+    const existingDomain = dataInstance.websiteData.find(site => site.url === enteredDomain);
 
     if (existingDomain) {
         alert(`Domain already exists:`, existingDomain);
@@ -149,8 +183,15 @@ document.querySelector('.search-button').addEventListener('click', (event) => {
 document.getElementById('add-domain').addEventListener('click', () => {
     const description = document.getElementById('description-input').value.trim();
     const selectedCategory = document.getElementById('category-dropdown').value;
-    
     const enteredDomain = domainInput.value.trim();
+
+    // Check if the entered domain is already in localStorage or taken
+    const existingDomain = storedDomains.find(domain => domain.url === enteredDomain);
+
+    if (existingDomain) {
+        alert(`Domain already exists and is taken: ${enteredDomain}`);
+        return; // Don't add the domain if it already exists
+    }
 
     function countWords(text) {
         return text.trim().split(/\s+/g).filter(a => a.trim().length > 0).length;
@@ -182,6 +223,8 @@ document.getElementById('add-domain').addEventListener('click', () => {
     storedDomains.push(newDomainEntry);
     localStorage.setItem('savedDomains', JSON.stringify(storedDomains));
 
+    populateGrid([...dataInstance.websiteData, newDomainEntry]);
+
     console.log("New domain added and saved:", newDomainEntry);
 
     // Close the popup after adding the domain
@@ -190,10 +233,10 @@ document.getElementById('add-domain').addEventListener('click', () => {
     document.getElementById('category-dropdown').selectedIndex = 0;
 
     // Clear URL param and refresh the page
-    const url = new URL(window.location);
-    url.searchParams.delete("param");
-    window.history.replaceState({}, document.title, url); // Update URL without param
-    location.reload(); // Refresh page
+    // const url = new URL(window.location);
+    // url.searchParams.delete("param");
+    // window.history.replaceState({}, document.title, url); // Update URL without param
+    // location.reload(); // Refresh page
 });
 
 // Close the popup
